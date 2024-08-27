@@ -1,12 +1,16 @@
+import FAssets.FMenuBar;
 import FAssets.FTextArea;
+import FListeners.FDocumentListener;
 
 import javax.swing.*;
 import java.awt.*;
-import java.io.*;
 
 public class Editor extends JFrame
 {
+    public FMenuBar fmenuBar;
+
     public FTextArea textArea;
+    public FDocumentListener documentListener;
 
     public Editor()
     {
@@ -25,6 +29,9 @@ public class Editor extends JFrame
         container.setLayout(layout);
 
         // Construction
+        fmenuBar = new FMenuBar();
+        setJMenuBar(fmenuBar);
+
         textArea = new FTextArea();
         container.add(textArea,BorderLayout.CENTER);
 
