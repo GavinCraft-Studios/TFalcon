@@ -1,6 +1,4 @@
-import java.awt.*;
-
-public class LaunchApp
+public class Application
 {
     static Editor window;
     public static void main(String[] args)

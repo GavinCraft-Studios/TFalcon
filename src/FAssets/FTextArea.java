@@ -7,6 +7,6 @@ public class FTextArea extends JTextArea
     public FTextArea()
     {
         // Configure the Text Area:
-        setTabSize(4); // default = 8
+        setTabSize(2); // default = 8
     }
 }
