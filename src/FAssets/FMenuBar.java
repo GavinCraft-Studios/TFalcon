@@ -1,13 +1,21 @@
 package FAssets;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class FMenuBar extends JMenuBar
 {
-    public FMenuBar()
+    public FTabPane tabPane;
+
+    public FMenuBar(FTabPane tabPane)
     {
+        this.tabPane = tabPane;
+
         JMenu file = new JMenu("File");
+
         JMenuItem newFile = file.add("New");
+        newFile.addActionListener(new NewFileListener());
         JMenuItem open = file.add("Open");
         file.addSeparator();
         JMenuItem save = file.add("Save");
@@ -16,5 +24,13 @@ public class FMenuBar extends JMenuBar
         file.add(autoSave);
 
         add(file);
+    }
+
+    class NewFileListener implements ActionListener
+    {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            tabPane.addTTab();
+        }
     }
 }

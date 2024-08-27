@@ -30,12 +30,12 @@ public class Editor extends JFrame
         container.setLayout(layout);
 
         // Construction
-        fmenuBar = new FMenuBar();
-        setJMenuBar(fmenuBar);
-
         tabPane = new FTabPane();
         tabPane.addTTab();
         container.add(tabPane, BorderLayout.CENTER);
+
+        fmenuBar = new FMenuBar(tabPane);
+        setJMenuBar(fmenuBar);
 
         // Make the Window Visible
         setVisible(true);
