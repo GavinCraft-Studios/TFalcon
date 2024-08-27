@@ -1,16 +1,17 @@
 import FAssets.FMenuBar;
+import FAssets.FTabPane;
 import FAssets.FTextArea;
-import FListeners.FDocumentListener;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 public class Editor extends JFrame
 {
     public FMenuBar fmenuBar;
 
-    public FTextArea textArea;
-    public FDocumentListener documentListener;
+    public FTabPane tabPane;
+    public ArrayList<FTextArea> textAreas;
 
     public Editor()
     {
@@ -32,8 +33,9 @@ public class Editor extends JFrame
         fmenuBar = new FMenuBar();
         setJMenuBar(fmenuBar);
 
-        textArea = new FTextArea();
-        container.add(textArea,BorderLayout.CENTER);
+        tabPane = new FTabPane();
+        tabPane.addTTab();
+        container.add(tabPane, BorderLayout.CENTER);
 
         // Make the Window Visible
         setVisible(true);
