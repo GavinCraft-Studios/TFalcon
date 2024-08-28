@@ -8,4 +8,9 @@ public class FTabPane extends JTabbedPane
     {
         addTab("Untitled", new FTextArea());
     }
+
+    public void closeTTab()
+    {
+        removeTabAt(getSelectedIndex());
+    }
 }

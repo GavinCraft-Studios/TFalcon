@@ -16,13 +16,15 @@ public class FMenuBar extends JMenuBar
 
         JMenuItem newFile = file.add("New");
         newFile.addActionListener(new NewFileListener());
-        JMenuItem open = file.add("Open");
+        JMenuItem openFile = file.add("Open");
         file.addSeparator();
         JMenuItem save = file.add("Save");
         JMenuItem saveAs = file.add("Save As");
         JCheckBoxMenuItem autoSave = new JCheckBoxMenuItem("Auto Save");
         file.add(autoSave);
-
+        file.addSeparator();
+        JMenuItem closeFile = file.add("Close");
+        closeFile.addActionListener(new CloseFileListener());
         add(file);
     }
 
@@ -31,6 +33,14 @@ public class FMenuBar extends JMenuBar
         @Override
         public void actionPerformed(ActionEvent e) {
             tabPane.addTTab();
+        }
+    }
+
+    class CloseFileListener implements ActionListener
+    {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            tabPane.closeTTab();
         }
     }
 }
