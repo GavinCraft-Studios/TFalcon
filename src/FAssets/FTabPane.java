@@ -32,4 +32,10 @@ public class FTabPane extends JTabbedPane
         removeTabAt(getSelectedIndex());
         files.remove(getSelectedIndex());
     }
+
+    public void closeTTab(int index)
+    {
+        removeTabAt(index);
+        files.remove(index);
+    }
 }

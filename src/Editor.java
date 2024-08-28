@@ -33,7 +33,6 @@ public class Editor extends JFrame
         tabPane.addTTab();
         container.add(tabPane, BorderLayout.CENTER);
 
-
         fmenuBar = new FMenuBar(tabPane);
         setJMenuBar(fmenuBar);
 
