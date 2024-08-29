@@ -15,8 +15,10 @@ public class FTabPane extends JTabbedPane
 
     public void addTTab()
     {
-        addTab("Untitled", new FTextArea());
+        FTextArea textArea = new FTextArea();
+        addTab("Untitled", textArea);
         files.add(null);
+        setSelectedComponent(textArea);
     }
 
     public void addTTab(File file)
@@ -51,5 +53,10 @@ public class FTabPane extends JTabbedPane
         {
             return false;
         }
+    }
+
+    public File getCurrentFile()
+    {
+        return files.get(getSelectedIndex());
     }
 }

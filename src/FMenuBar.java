@@ -54,17 +54,7 @@ public class FMenuBar extends JMenuBar
             {
                 // Make Tab For File
                 tabPane.addTTab(selectedFile);
-                FTextArea textArea = (FTextArea) tabPane.getSelectedComponent();
-
-                // Open File Contents
-                try (BufferedReader br = new BufferedReader(new FileReader(selectedFile))) {
-                    String line;
-                    while ((line = br.readLine()) != null) {
-                        textArea.append(line + "\n");
-                    }
-                } catch (IOException IOexception) {
-                    IOexception.printStackTrace();
-                }
+                FileManager.instance.openFile(selectedFile);
             }
         }
     }
@@ -75,7 +65,12 @@ public class FMenuBar extends JMenuBar
         public void actionPerformed(ActionEvent e) {
             if (tabPane.checkHasFile() == true)
             {
-                // TODO - Make save function
+                FileManager.instance.saveFile(tabPane.getCurrentFile());
+            }
+            else
+            {
+                File location = FileManager.instance.chooseFile();
+                FileManager.instance.saveFile(location);
             }
         }
     }
@@ -84,7 +79,10 @@ public class FMenuBar extends JMenuBar
     {
         @Override
         public void actionPerformed(ActionEvent e) {
-            // TODO - Make save as function
+            File location = FileManager.instance.chooseFile();
+            FileManager.instance.saveFile(location);
+            tabPane.addTTab(location);
+            FileManager.instance.openFile(location);
         }
     }
 
