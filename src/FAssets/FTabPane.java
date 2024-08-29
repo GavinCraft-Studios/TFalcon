@@ -21,6 +21,8 @@ public class FTabPane extends JTabbedPane
 
     public void addTTab(File file)
     {
+        // TODO - Remove Untitled Tab
+
         FTextArea textArea = new FTextArea();
         addTab(file.getName(), textArea);
         files.add(file);
@@ -37,5 +39,17 @@ public class FTabPane extends JTabbedPane
     {
         removeTabAt(index);
         files.remove(index);
+    }
+
+    public boolean checkHasFile()
+    {
+        if (files.get(getSelectedIndex()) != null)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 }

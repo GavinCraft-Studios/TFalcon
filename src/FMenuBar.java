@@ -24,8 +24,10 @@ public class FMenuBar extends JMenuBar
         JMenuItem openFile = file.add("Open");
         openFile.addActionListener(new OpenFileListener());
         file.addSeparator();
-        JMenuItem save = file.add("Save");
-        JMenuItem saveAs = file.add("Save As");
+        JMenuItem saveFile = file.add("Save");
+        saveFile.addActionListener(new SaveFileListener());
+        JMenuItem saveFileAs = file.add("Save As");
+        saveFileAs.addActionListener(new SaveAsFileListener());
         JCheckBoxMenuItem autoSave = new JCheckBoxMenuItem("Auto Save");
         file.add(autoSave);
         file.addSeparator();
@@ -64,6 +66,25 @@ public class FMenuBar extends JMenuBar
                     IOexception.printStackTrace();
                 }
             }
+        }
+    }
+
+    class SaveFileListener implements ActionListener
+    {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if (tabPane.checkHasFile() == true)
+            {
+                // TODO - Make save function
+            }
+        }
+    }
+
+    class SaveAsFileListener implements ActionListener
+    {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            // TODO - Make save as function
         }
     }
 
