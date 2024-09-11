@@ -28,8 +28,8 @@ public class FMenuBar extends JMenuBar
         saveFile.addActionListener(new SaveFileListener());
         JMenuItem saveFileAs = file.add("Save As");
         saveFileAs.addActionListener(new SaveAsFileListener());
-        JCheckBoxMenuItem autoSave = new JCheckBoxMenuItem("Auto Save");
-        file.add(autoSave);
+        //JCheckBoxMenuItem autoSave = new JCheckBoxMenuItem("Auto Save"); TODO <-------------
+        //file.add(autoSave);
         file.addSeparator();
         JMenuItem closeFile = file.add("Close");
         closeFile.addActionListener(new CloseFileListener());
