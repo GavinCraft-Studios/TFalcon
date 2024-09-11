@@ -6,9 +6,16 @@ import java.awt.*;
 public class Editor extends JFrame
 {
     public static Editor instance;
+    public static FTabPane tabPane;
+    public static FileManager fileManager;
 
     public FMenuBar fmenuBar;
-    public FTabPane tabPane;
+
+    public static void main(String[] args)
+    {
+        fileManager = new FileManager();
+        Editor window = new Editor();
+    }
 
     public Editor()
     {
@@ -33,7 +40,7 @@ public class Editor extends JFrame
         tabPane.addTTab();
         container.add(tabPane, BorderLayout.CENTER);
 
-        fmenuBar = new FMenuBar(tabPane);
+        fmenuBar = new FMenuBar();
         setJMenuBar(fmenuBar);
 
         // Make the Window Visible

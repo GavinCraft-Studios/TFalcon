@@ -6,8 +6,6 @@ import java.io.*;
 
 public class FileManager
 {
-    public static FileManager instance;
-
     public FFileChooser fileChooser;
 
     public File chooseFile()

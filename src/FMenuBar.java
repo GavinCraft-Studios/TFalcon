@@ -1,21 +1,12 @@
-import FAssets.FTabPane;
-import FAssets.FTextArea;
-
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
 
 public class FMenuBar extends JMenuBar
 {
-    public FTabPane tabPane;
-
-    public FMenuBar(FTabPane tabPane)
+    public FMenuBar()
     {
-        this.tabPane = tabPane;
 
         JMenu file = new JMenu("File");
 
@@ -40,7 +31,7 @@ public class FMenuBar extends JMenuBar
     {
         @Override
         public void actionPerformed(ActionEvent e) {
-            tabPane.addTTab();
+            Editor.tabPane.addTTab();
         }
     }
 
@@ -48,13 +39,13 @@ public class FMenuBar extends JMenuBar
     {
         @Override
         public void actionPerformed(ActionEvent e) {
-            File selectedFile = FileManager.instance.chooseFile();
+            File selectedFile = Editor.fileManager.chooseFile();
 
             if (selectedFile != null)
             {
                 // Make Tab For File
-                tabPane.addTTab(selectedFile);
-                FileManager.instance.openFile(selectedFile);
+                Editor.tabPane.addTTab(selectedFile);
+                Editor.fileManager.openFile(selectedFile);
             }
         }
     }
@@ -63,14 +54,14 @@ public class FMenuBar extends JMenuBar
     {
         @Override
         public void actionPerformed(ActionEvent e) {
-            if (tabPane.checkHasFile() == true)
+            if (Editor.tabPane.checkHasFile() == true)
             {
-                FileManager.instance.saveFile(tabPane.getCurrentFile());
+                Editor.fileManager.saveFile(Editor.tabPane.getCurrentFile());
             }
             else
             {
-                File location = FileManager.instance.chooseFile();
-                FileManager.instance.saveFile(location);
+                File location = Editor.fileManager.chooseFile();
+                Editor.fileManager.saveFile(location);
             }
         }
     }
@@ -79,10 +70,10 @@ public class FMenuBar extends JMenuBar
     {
         @Override
         public void actionPerformed(ActionEvent e) {
-            File location = FileManager.instance.chooseFile();
-            FileManager.instance.saveFile(location);
-            tabPane.addTTab(location);
-            FileManager.instance.openFile(location);
+            File location = Editor.fileManager.chooseFile();
+            Editor.fileManager.saveFile(location);
+            Editor.tabPane.addTTab(location);
+            Editor.fileManager.openFile(location);
         }
     }
 
@@ -90,7 +81,7 @@ public class FMenuBar extends JMenuBar
     {
         @Override
         public void actionPerformed(ActionEvent e) {
-            tabPane.closeTTab();
+            Editor.tabPane.closeTTab();
         }
     }
 }
