@@ -1,6 +1,7 @@
-package FAssets;
+import FAssets.FTextArea;
 
 import javax.swing.*;
+import java.awt.event.WindowEvent;
 import java.io.File;
 import java.util.ArrayList;
 
@@ -31,16 +32,23 @@ public class FTabPane extends JTabbedPane
         setSelectedComponent(textArea);
     }
 
-    public void closeTTab()
-    {
-        removeTabAt(getSelectedIndex());
+    public void closeTTab() {
         files.remove(getSelectedIndex());
+        removeTabAt(getSelectedIndex());
+
+        if (getTabCount() <= 0) {
+            Editor.instance.CloseEditor();
+        }
     }
 
     public void closeTTab(int index)
     {
-        removeTabAt(index);
         files.remove(index);
+        removeTabAt(index);
+
+        if (getTabCount() <= 0) {
+            Editor.instance.CloseEditor();
+        }
     }
 
     public boolean checkHasFile()

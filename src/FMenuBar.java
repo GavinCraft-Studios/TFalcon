@@ -7,7 +7,6 @@ public class FMenuBar extends JMenuBar
 {
     public FMenuBar()
     {
-
         JMenu file = new JMenu("File");
 
         JMenuItem newFile = file.add("New");

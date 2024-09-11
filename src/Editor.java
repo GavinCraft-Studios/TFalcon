@@ -1,5 +1,3 @@
-import FAssets.FTabPane;
-
 import javax.swing.*;
 import java.awt.*;
 
@@ -45,5 +43,11 @@ public class Editor extends JFrame
 
         // Make the Window Visible
         setVisible(true);
+    }
+
+    public void CloseEditor()
+    {
+        Editor.instance.setVisible(false);
+        Editor.instance.dispose();
     }
 }
