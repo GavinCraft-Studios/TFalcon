@@ -40,8 +40,7 @@ public class Editor extends JFrame
         tabPane = new FTabPane();
         tabPane.addTTab();
         container.add(tabPane, BorderLayout.CENTER);
-
-        // TODO - Populate file tree <-----------------
+        
         fileTree = new FTree();
         fileTree.setVisible(false);
         container.add(fileTree, BorderLayout.WEST);
