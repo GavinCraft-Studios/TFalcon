@@ -1,12 +1,23 @@
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.io.File;
 
 public class FMenuBar extends JMenuBar
 {
     public FMenuBar()
     {
+        JMenu folder = new JMenu("Folder");
+
+        JMenuItem openFolder = folder.add("Open Folder");
+        folder.addSeparator();
+        JCheckBoxMenuItem folderView = new JCheckBoxMenuItem("View Folder");
+        folderView.addItemListener(new FolderViewListener());
+        folder.add(folderView);
+
+
         JMenu file = new JMenu("File");
 
         JMenuItem newFile = file.add("New");
@@ -21,9 +32,24 @@ public class FMenuBar extends JMenuBar
         //JCheckBoxMenuItem autoSave = new JCheckBoxMenuItem("Auto Save"); TODO <-------------
         //file.add(autoSave);
         file.addSeparator();
+        file.add(folder);
+        file.addSeparator();
         JMenuItem closeFile = file.add("Close");
         closeFile.addActionListener(new CloseFileListener());
         add(file);
+    }
+
+    class FolderViewListener implements ItemListener
+    {
+        @Override
+        public void itemStateChanged(ItemEvent e) {
+            if (e.getStateChange() == ItemEvent.SELECTED) {
+                Editor.fileTree.setVisible(true);
+            }
+            else {
+                Editor.fileTree.setVisible(false);
+            }
+        }
     }
 
     class NewFileListener implements ActionListener
