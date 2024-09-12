@@ -42,9 +42,18 @@ public class FMenuBar extends JMenuBar
 
             if (selectedFile != null)
             {
-                // Make Tab For File
-                Editor.tabPane.addTTab(selectedFile);
-                Editor.fileManager.openFile(selectedFile);
+                if (!Editor.tabPane.checkHasFile())
+                {
+                    // Refile Current Tab
+                    Editor.tabPane.refileTTab(selectedFile);
+                    Editor.fileManager.openFile(selectedFile);
+                }
+                else
+                {
+                    // Make Tab For File
+                    Editor.tabPane.addTTab(selectedFile);
+                    Editor.fileManager.openFile(selectedFile);
+                }
             }
         }
     }
@@ -71,9 +80,19 @@ public class FMenuBar extends JMenuBar
         @Override
         public void actionPerformed(ActionEvent e) {
             File location = Editor.fileManager.chooseFile();
-            Editor.fileManager.saveFile(location);
-            Editor.tabPane.addTTab(location);
-            Editor.fileManager.openFile(location);
+
+            if (Editor.tabPane.checkHasFile())
+            {
+                Editor.fileManager.saveFile(location);
+                Editor.tabPane.addTTab(location);
+                Editor.fileManager.openFile(location);
+            }
+            else
+            {
+                Editor.fileManager.saveFile(location);
+                Editor.tabPane.refileTTab(location);
+                Editor.fileManager.openFile(location);
+            }
         }
     }
 
