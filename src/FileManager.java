@@ -2,6 +2,8 @@ import FAssets.FFileChooser;
 import FAssets.FTextArea;
 
 import javax.swing.*;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
 import java.io.*;
 
 public class FileManager
@@ -11,6 +13,24 @@ public class FileManager
     public File chooseFile()
     {
         fileChooser = new FFileChooser();
+
+        int result = fileChooser.showOpenDialog(null);
+
+        if (result == FFileChooser.APPROVE_OPTION)
+        {
+            File selectedFile = fileChooser.getSelectedFile();
+            return selectedFile;
+        }
+        else
+        {
+            return null;
+        }
+    }
+
+    public File chooseFolder()
+    {
+        fileChooser = new FFileChooser();
+        fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
 
         int result = fileChooser.showOpenDialog(null);
 
@@ -66,6 +86,31 @@ public class FileManager
             e.printStackTrace();
             System.out.println("Error saving text to file.");
             return false;
+        }
+    }
+
+    public void populateDirectoryTree(File directory)
+    {
+        DefaultMutableTreeNode rootNode = new DefaultMutableTreeNode(directory.getName());
+        DefaultTreeModel treeModel = new DefaultTreeModel(rootNode);
+        Editor.fileTree.setModel(treeModel);
+
+        // Recursively add subdirectories
+        addSubdirectories(rootNode, directory);
+    }
+
+    private void addSubdirectories(DefaultMutableTreeNode node, File directory)
+    {
+        File[] files = directory.listFiles();
+        if (files != null) {
+            for (File file : files) {
+                if (file.isDirectory()) {
+                    DefaultMutableTreeNode childNode = new DefaultMutableTreeNode(file.getName());
+
+                    node.add(childNode);
+                    addSubdirectories(childNode, file);
+                }
+            }
         }
     }
 }

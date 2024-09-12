@@ -12,6 +12,7 @@ public class FMenuBar extends JMenuBar
         JMenu folder = new JMenu("Folder");
 
         JMenuItem openFolder = folder.add("Open Folder");
+        openFolder.addActionListener(new OpenFolderListener());
         folder.addSeparator();
         JCheckBoxMenuItem folderView = new JCheckBoxMenuItem("View Folder");
         folderView.addItemListener(new FolderViewListener());
@@ -37,6 +38,15 @@ public class FMenuBar extends JMenuBar
         JMenuItem closeFile = file.add("Close");
         closeFile.addActionListener(new CloseFileListener());
         add(file);
+    }
+
+    class OpenFolderListener implements ActionListener
+    {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            File selectedFolder = Editor.fileManager.chooseFolder();
+            Editor.fileManager.populateDirectoryTree(selectedFolder);
+        }
     }
 
     class FolderViewListener implements ItemListener
