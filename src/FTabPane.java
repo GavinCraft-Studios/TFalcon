@@ -24,8 +24,6 @@ public class FTabPane extends JTabbedPane
 
     public void addTTab(File file)
     {
-        // TODO - Remove Untitled Tab
-
         FTextArea textArea = new FTextArea();
         addTab(file.getName(), textArea);
         files.add(file);
@@ -39,6 +37,21 @@ public class FTabPane extends JTabbedPane
         if (getTabCount() <= 0) {
             Editor.instance.CloseEditor();
         }
+    }
+
+    public void refileTTab(File location) {
+        int selectedIndex = getSelectedIndex();
+        files.remove(selectedIndex);
+        files.add(selectedIndex, location);
+
+        if (files.indexOf(location) == selectedIndex) {
+            System.out.println("Refile of TTab " + selectedIndex + " was successful.");
+        }
+        else {
+            System.out.println("Refile of TTab " + selectedIndex + " was unsuccessful.");
+        }
+
+        setTitleAt(selectedIndex, location.getName());
     }
 
     public void closeTTab(int index)

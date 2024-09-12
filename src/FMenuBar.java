@@ -61,6 +61,7 @@ public class FMenuBar extends JMenuBar
             {
                 File location = Editor.fileManager.chooseFile();
                 Editor.fileManager.saveFile(location);
+                Editor.tabPane.refileTTab(location);
             }
         }
     }
