@@ -1,3 +1,4 @@
+import FAssets.FScrollPane;
 import FAssets.FTextArea;
 
 import javax.swing.*;
@@ -17,17 +18,21 @@ public class FTabPane extends JTabbedPane
     public void addTTab()
     {
         FTextArea textArea = new FTextArea();
-        addTab("Untitled", textArea);
+        FScrollPane scrollPane = new FScrollPane(textArea, true);
+
+        addTab("Untitled", scrollPane);
         files.add(null);
-        setSelectedComponent(textArea);
+        setSelectedComponent(scrollPane);
     }
 
     public void addTTab(File file)
     {
         FTextArea textArea = new FTextArea();
-        addTab(file.getName(), textArea);
+        FScrollPane scrollPane = new FScrollPane(textArea, true);
+
+        addTab(file.getName(), scrollPane);
         files.add(file);
-        setSelectedComponent(textArea);
+        setSelectedComponent(scrollPane);
     }
 
     public void closeTTab() {

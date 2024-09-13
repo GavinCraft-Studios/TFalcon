@@ -7,6 +7,8 @@ import java.io.File;
 
 public class FMenuBar extends JMenuBar
 {
+    private JCheckBoxMenuItem folderView;
+
     public FMenuBar()
     {
         JMenu folder = new JMenu("Folder");
@@ -14,7 +16,7 @@ public class FMenuBar extends JMenuBar
         JMenuItem openFolder = folder.add("Open Folder");
         openFolder.addActionListener(new OpenFolderListener());
         folder.addSeparator();
-        JCheckBoxMenuItem folderView = new JCheckBoxMenuItem("View Folder");
+        folderView = new JCheckBoxMenuItem("View Folder");
         folderView.addItemListener(new FolderViewListener());
         folder.add(folderView);
 
@@ -46,6 +48,9 @@ public class FMenuBar extends JMenuBar
         public void actionPerformed(ActionEvent e) {
             File selectedFolder = Editor.fileManager.chooseFolder();
             Editor.fileManager.populateDirectoryTree(selectedFolder);
+            folderView.setState(true);
+            Editor.instance.revalidate();
+            Editor.instance.repaint();
         }
     }
 
@@ -54,10 +59,14 @@ public class FMenuBar extends JMenuBar
         @Override
         public void itemStateChanged(ItemEvent e) {
             if (e.getStateChange() == ItemEvent.SELECTED) {
-                Editor.fileTree.setVisible(true);
+                Editor.fileTreePane.setVisible(true);
+                Editor.instance.revalidate();
+                Editor.instance.repaint();
             }
             else {
-                Editor.fileTree.setVisible(false);
+                Editor.fileTreePane.setVisible(false);
+                Editor.instance.revalidate();
+                Editor.instance.repaint();
             }
         }
     }

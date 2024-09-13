@@ -99,8 +99,7 @@ public class FileManager
         addSubdirectories(rootNode, directory);
     }
 
-    private void addSubdirectories(DefaultMutableTreeNode node, File directory)
-    {
+    private void addSubdirectories(DefaultMutableTreeNode node, File directory) {
         File[] files = directory.listFiles();
         if (files != null) {
             for (File file : files) {
@@ -109,6 +108,10 @@ public class FileManager
 
                     node.add(childNode);
                     addSubdirectories(childNode, file);
+                } else {
+                    // If the file is not a directory, add it as a leaf node
+                    DefaultMutableTreeNode fileNode = new DefaultMutableTreeNode(file.getName());
+                    node.add(fileNode);
                 }
             }
         }

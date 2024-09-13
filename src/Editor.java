@@ -1,4 +1,5 @@
-import FAssets.FTree;
+import FAssets.FScrollPane;
+import FAssets.FTreeCellRenderer;
 
 import javax.swing.*;
 import java.awt.*;
@@ -9,6 +10,7 @@ public class Editor extends JFrame
     public static FTabPane tabPane;
     public static FileManager fileManager;
     public static FTree fileTree;
+    public static FScrollPane fileTreePane;
 
     public FMenuBar fmenuBar;
 
@@ -36,15 +38,20 @@ public class Editor extends JFrame
         Container container = getContentPane();
         container.setLayout(layout);
 
-        // Construction
+        // Construction - Tab Pane
         tabPane = new FTabPane();
         tabPane.addTTab();
         container.add(tabPane, BorderLayout.CENTER);
-        
-        fileTree = new FTree();
-        fileTree.setVisible(false);
-        container.add(fileTree, BorderLayout.WEST);
 
+        // Construction - File Tree
+        fileTree = new FTree();
+        fileTree.setCellRenderer(new FTreeCellRenderer());
+        fileTreePane = new FScrollPane(fileTree, false);
+        //fileTreePane.setViewportView(fileTree);
+        fileTreePane.setVisible(false);
+        container.add(fileTreePane, BorderLayout.WEST);
+
+        // Construction - Menu Bar
         fmenuBar = new FMenuBar();
         setJMenuBar(fmenuBar);
 
