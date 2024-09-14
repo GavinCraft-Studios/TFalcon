@@ -14,4 +14,10 @@ public class FScrollPane extends JScrollPane {
             setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         }
     }
+
+    public FTextArea getFTextArea()
+    {
+        FTextArea textArea = (FTextArea) super.getViewport().getView();
+        return textArea;
+    }
 }

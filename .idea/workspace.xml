@@ -5,14 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9c6b9de6-fb19-4c28-b58d-070291c86dad" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/FAssets/FScrollPane.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/FAssets/FTreeCellRenderer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/FTree.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Editor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Editor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/FAssets/FTree.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/FMenuBar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FMenuBar.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/FTabPane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FTabPane.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/FAssets/FScrollPane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FAssets/FScrollPane.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/FTree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FTree.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/FileManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FileManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

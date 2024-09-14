@@ -16,13 +16,7 @@ public class FTree extends JTree {
     class treeSelectionListener implements TreeSelectionListener {
         @Override
         public void valueChanged(TreeSelectionEvent e) {
-            System.out.println("File Tree Interacted With");
-            DefaultMutableTreeNode selectedNode = (DefaultMutableTreeNode)
-            e.getPath().getLastPathComponent();
-
-            File selectedFile = new File(selectedNode.toString());
-
-            // TODO - Load the contents of the selected file into the editor
+            // TODO - Load File
         }
     }
 

@@ -1,4 +1,5 @@
 import FAssets.FFileChooser;
+import FAssets.FScrollPane;
 import FAssets.FTextArea;
 
 import javax.swing.*;
@@ -10,9 +11,14 @@ public class FileManager
 {
     public FFileChooser fileChooser;
 
-    public File chooseFile()
+    public FileManager()
     {
         fileChooser = new FFileChooser();
+    }
+
+    public File chooseFile()
+    {
+        fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
 
         int result = fileChooser.showOpenDialog(null);
 
@@ -29,7 +35,6 @@ public class FileManager
 
     public File chooseFolder()
     {
-        fileChooser = new FFileChooser();
         fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
 
         int result = fileChooser.showOpenDialog(null);
@@ -47,7 +52,8 @@ public class FileManager
 
     public void openFile(File file)
     {
-        FTextArea textArea = (FTextArea) Editor.instance.tabPane.getSelectedComponent();
+        FScrollPane scrollPane = (FScrollPane) Editor.tabPane.getSelectedComponent();
+        FTextArea textArea = scrollPane.getFTextArea();
 
         // Open File Contents
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {

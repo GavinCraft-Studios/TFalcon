@@ -14,15 +14,20 @@ public class Editor extends JFrame
 
     public FMenuBar fmenuBar;
 
+    //private static ImageIcon icon;
+
     public static void main(String[] args)
     {
         fileManager = new FileManager();
         Editor window = new Editor();
+
+        //icon = new ImageIcon("Sprite-0001.ico");
     }
 
     public Editor()
     {
         instance = this;
+        //setIconImage(icon.getImage());
 
         // Application Setup
         setTitle("Text Falcon");
