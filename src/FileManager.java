@@ -1,4 +1,5 @@
 import FAssets.FFileChooser;
+import FAssets.FMutableTreeNode;
 import FAssets.FScrollPane;
 import FAssets.FTextArea;
 
@@ -97,7 +98,7 @@ public class FileManager
 
     public void populateDirectoryTree(File directory)
     {
-        DefaultMutableTreeNode rootNode = new DefaultMutableTreeNode(directory.getName());
+        FMutableTreeNode rootNode = new FMutableTreeNode(directory);
         DefaultTreeModel treeModel = new DefaultTreeModel(rootNode);
         Editor.fileTree.setModel(treeModel);
 
@@ -105,18 +106,18 @@ public class FileManager
         addSubdirectories(rootNode, directory);
     }
 
-    private void addSubdirectories(DefaultMutableTreeNode node, File directory) {
+    private void addSubdirectories(FMutableTreeNode node, File directory) {
         File[] files = directory.listFiles();
         if (files != null) {
             for (File file : files) {
                 if (file.isDirectory()) {
-                    DefaultMutableTreeNode childNode = new DefaultMutableTreeNode(file.getName());
+                    FMutableTreeNode childNode = new FMutableTreeNode(file);
 
                     node.add(childNode);
                     addSubdirectories(childNode, file);
                 } else {
                     // If the file is not a directory, add it as a leaf node
-                    DefaultMutableTreeNode fileNode = new DefaultMutableTreeNode(file.getName());
+                    FMutableTreeNode fileNode = new FMutableTreeNode(file);
                     node.add(fileNode);
                 }
             }

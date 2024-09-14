@@ -52,7 +52,6 @@ public class Editor extends JFrame
         fileTree = new FTree();
         fileTree.setCellRenderer(new FTreeCellRenderer());
         fileTreePane = new FScrollPane(fileTree, false);
-        //fileTreePane.setViewportView(fileTree);
         fileTreePane.setVisible(false);
         container.add(fileTreePane, BorderLayout.WEST);
 
