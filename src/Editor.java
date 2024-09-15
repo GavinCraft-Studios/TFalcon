@@ -3,6 +3,7 @@ import FAssets.FTreeCellRenderer;
 
 import javax.swing.*;
 import java.awt.*;
+import java.net.URL;
 
 public class Editor extends JFrame
 {
@@ -23,11 +24,12 @@ public class Editor extends JFrame
     public Editor()
     {
         instance = this;
-        ImageIcon icon = new ImageIcon("TFalcon1.png");
-        setIconImage(icon.getImage());
 
         // Application Setup
         setTitle("Text Falcon");
+        URL iconURL = getClass().getResource("TFalcon.png");
+        ImageIcon icon = new ImageIcon(iconURL);
+        setIconImage(icon.getImage());
 
         Toolkit toolkit = getToolkit();
         Dimension screenSize = toolkit.getScreenSize();
