@@ -12,6 +12,9 @@ public class FileManager
 {
     public FFileChooser fileChooser;
 
+    public File selectedFolder;
+    public File lastSelectedDirectory;
+
     public FileManager()
     {
         fileChooser = new FFileChooser();
@@ -20,12 +23,15 @@ public class FileManager
     public File chooseFile()
     {
         fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+        setFileChooserDirectory();
 
         int result = fileChooser.showOpenDialog(null);
 
         if (result == FFileChooser.APPROVE_OPTION)
         {
             File selectedFile = fileChooser.getSelectedFile();
+
+            lastSelectedDirectory = selectedFile;
             return selectedFile;
         }
         else
@@ -37,12 +43,16 @@ public class FileManager
     public File chooseFolder()
     {
         fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        setFileChooserDirectory();
 
         int result = fileChooser.showOpenDialog(null);
 
         if (result == FFileChooser.APPROVE_OPTION)
         {
             File selectedFile = fileChooser.getSelectedFile();
+
+            lastSelectedDirectory = selectedFile;
+            selectedFolder = selectedFile;
             return selectedFile;
         }
         else
@@ -121,6 +131,15 @@ public class FileManager
                     node.add(fileNode);
                 }
             }
+        }
+    }
+
+    public void setFileChooserDirectory()
+    {
+        if (selectedFolder != null) {
+            fileChooser.setCurrentDirectory(selectedFolder);
+        } else if (lastSelectedDirectory != null) {
+            fileChooser.setCurrentDirectory(lastSelectedDirectory);
         }
     }
 }
