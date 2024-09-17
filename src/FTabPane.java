@@ -85,4 +85,9 @@ public class FTabPane extends JTabbedPane
     {
         return files.get(getSelectedIndex());
     }
+
+    public ArrayList<File> getAllFiles()
+    {
+        return files;
+    }
 }

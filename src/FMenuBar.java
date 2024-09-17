@@ -4,6 +4,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.io.File;
+import java.util.ArrayList;
 
 public class FMenuBar extends JMenuBar
 {
@@ -32,6 +33,8 @@ public class FMenuBar extends JMenuBar
         saveFile.addActionListener(new SaveFileListener());
         JMenuItem saveFileAs = file.add("Save As");
         saveFileAs.addActionListener(new SaveAsFileListener());
+        JMenuItem saveAllFiles = file.add("Save All");
+        saveAllFiles.addActionListener(new SaveAllFilesListener());
         //JCheckBoxMenuItem autoSave = new JCheckBoxMenuItem("Auto Save"); TODO <-------------
         //file.add(autoSave);
         file.addSeparator();
@@ -137,6 +140,20 @@ public class FMenuBar extends JMenuBar
                 Editor.fileManager.saveFile(location);
                 Editor.tabPane.refileTTab(location);
                 Editor.fileManager.openFile(location);
+            }
+        }
+    }
+
+    class SaveAllFilesListener implements ActionListener
+    {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            ArrayList<File> files = Editor.tabPane.getAllFiles();
+            for (File file : files)
+            {
+                // TODO - Save ALl Files
+                int index = files.indexOf(file);
+                Editor.fileManager.saveFile(file, index);
             }
         }
     }

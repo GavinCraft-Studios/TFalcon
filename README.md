@@ -1,9 +1,10 @@
 # TFalcon
 #### Text Falcon is a Java based text editor for all operating systems.
 
-## Build .jar from IntelliJ
 
-I would like to leave instructions for myself and others on how to build a working .jar file from the editor this is made in (IntelliJ).
+
+## Build .jar from IntelliJ
+#### I would like to leave instructions for myself and others on how to build a working .jar file from the editor this is made in (IntelliJ).
 
 - Open the Project Structure dialog:
   - Go to File > Project Structure (or press Ctrl+Alt+Shift+S on Windows/Linux or Cmd+Alt+Shift+S on macOS).

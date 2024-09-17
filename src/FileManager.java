@@ -106,6 +106,35 @@ public class FileManager
         }
     }
 
+    public boolean saveFile(File location, int index)
+    {
+        // Return true if save is completed
+
+        FScrollPane scrollPane = (FScrollPane) Editor.tabPane.getSelectedComponent();
+        FTextArea textArea = scrollPane.getFTextArea();
+        String text = textArea.getText();
+        try {
+            // Create a FileWriter to write to the file
+            FileWriter writer = new FileWriter(location);
+            // Create a BufferedWriter to write to the file more efficiently
+            BufferedWriter bufferedWriter = new BufferedWriter(writer);
+
+            // Write the text to the file
+            bufferedWriter.write(text);
+
+            // Close the writer and buffered writer
+            bufferedWriter.close();
+            writer.close();
+
+            System.out.println("Text saved successfully to " + location.getAbsolutePath());
+            return true;
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("Error saving text to file.");
+            return false;
+        }
+    }
+
     public void populateDirectoryTree(File directory)
     {
         FMutableTreeNode rootNode = new FMutableTreeNode(directory);
