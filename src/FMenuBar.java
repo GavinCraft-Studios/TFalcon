@@ -12,16 +12,13 @@ public class FMenuBar extends JMenuBar
 
     public FMenuBar()
     {
-        JMenu folder = new JMenu("Folder");
+        JMenu file = setupFileMenu();
+        add(file);
+        // TODO - Create Edit Menu
+    }
 
-        JMenuItem openFolder = folder.add("Open Folder");
-        openFolder.addActionListener(new OpenFolderListener());
-        folder.addSeparator();
-        folderView = new JCheckBoxMenuItem("View Folder");
-        folderView.addItemListener(new FolderViewListener());
-        folder.add(folderView);
-
-
+    /* ----------------------- Menu Creation Methods ----------------------- */
+    private JMenu setupFileMenu() {
         JMenu file = new JMenu("File");
 
         JMenuItem newFile = file.add("New");
@@ -38,43 +35,30 @@ public class FMenuBar extends JMenuBar
         //JCheckBoxMenuItem autoSave = new JCheckBoxMenuItem("Auto Save"); TODO <-------------
         //file.add(autoSave);
         file.addSeparator();
-        file.add(folder);
+        file.add(setupProjectMenu());
         file.addSeparator();
         JMenuItem closeFile = file.add("Close");
         closeFile.addActionListener(new CloseFileListener());
-        add(file);
+        return file;
     }
 
-    class OpenFolderListener implements ActionListener
-    {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            File selectedFolder = Editor.fileManager.chooseFolder();
-            Editor.fileManager.populateDirectoryTree(selectedFolder);
-            folderView.setState(true);
-            Editor.instance.revalidate();
-            Editor.instance.repaint();
-        }
+    private JMenu setupProjectMenu() {
+        JMenu project = new JMenu("Project");
+
+        // TODO - Make menu for creating projects
+        // TODO - Make item for opening projects
+        // TODO - Make item for saving projects
+        project.addSeparator();
+        JMenuItem openFolder = project.add("Open Folder");
+        openFolder.addActionListener(new OpenFolderListener());
+        folderView = new JCheckBoxMenuItem("View Folder");
+        folderView.addItemListener(new FolderViewListener());
+        project.add(folderView);
+        return project;
     }
 
-    class FolderViewListener implements ItemListener
-    {
-        @Override
-        public void itemStateChanged(ItemEvent e) {
-            if (e.getStateChange() == ItemEvent.SELECTED) {
-                Editor.fileTreePane.setVisible(true);
-                Editor.instance.revalidate();
-                Editor.instance.repaint();
-            }
-            else {
-                Editor.fileTreePane.setVisible(false);
-                Editor.instance.revalidate();
-                Editor.instance.repaint();
-            }
-        }
-    }
-
-    class NewFileListener implements ActionListener
+    /* --------------------- Action and Item Listeners --------------------- */
+    class NewFileListener implements ActionListener // File Menu Listeners
     {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -154,6 +138,35 @@ public class FMenuBar extends JMenuBar
                 // TODO - Save ALl Files
                 int index = files.indexOf(file);
                 Editor.fileManager.saveFile(file, index);
+            }
+        }
+    }
+
+    class OpenFolderListener implements ActionListener
+    {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            File selectedFolder = Editor.fileManager.chooseFolder();
+            Editor.fileManager.populateDirectoryTree(selectedFolder);
+            folderView.setState(true);
+            Editor.instance.revalidate();
+            Editor.instance.repaint();
+        }
+    }
+
+    class FolderViewListener implements ItemListener
+    {
+        @Override
+        public void itemStateChanged(ItemEvent e) {
+            if (e.getStateChange() == ItemEvent.SELECTED) {
+                Editor.fileTreePane.setVisible(true);
+                Editor.instance.revalidate();
+                Editor.instance.repaint();
+            }
+            else {
+                Editor.fileTreePane.setVisible(false);
+                Editor.instance.revalidate();
+                Editor.instance.repaint();
             }
         }
     }

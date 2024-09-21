@@ -1,7 +1,6 @@
 package FAssets;
 
 import javax.swing.*;
-import java.awt.*;
 
 public class FTextArea extends JTextArea
 {
