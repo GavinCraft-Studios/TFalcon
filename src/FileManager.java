@@ -82,7 +82,8 @@ public class FileManager
     {
         // Return true if save is completed
 
-        JTextArea textArea = (JTextArea) Editor.instance.tabPane.getSelectedComponent();
+        FScrollPane scrollPane = (FScrollPane) Editor.tabPane.getSelectedComponent();
+        FTextArea textArea = scrollPane.getFTextArea();
         String text = textArea.getText();
         try {
             // Create a FileWriter to write to the file

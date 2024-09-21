@@ -1,4 +1,12 @@
+import FAssets.FScrollPane;
+import FAssets.FTextArea;
+
 import javax.swing.*;
+import java.awt.*;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.DataFlavor;
+import java.awt.datatransfer.StringSelection;
+import java.awt.datatransfer.Transferable;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
@@ -10,11 +18,16 @@ public class FMenuBar extends JMenuBar
 {
     private JCheckBoxMenuItem folderView;
 
+    private JMenu fileMenu;
+    private JMenu editMenu;
+    // TODO - Create View Menu
+
     public FMenuBar()
     {
-        JMenu file = setupFileMenu();
-        add(file);
-        // TODO - Create Edit Menu
+        fileMenu = setupFileMenu();
+        add(fileMenu);
+        editMenu = setupEditMenu();
+        add(editMenu);
     }
 
     /* ----------------------- Menu Creation Methods ----------------------- */
@@ -39,6 +52,7 @@ public class FMenuBar extends JMenuBar
         file.addSeparator();
         JMenuItem closeFile = file.add("Close");
         closeFile.addActionListener(new CloseFileListener());
+
         return file;
     }
 
@@ -54,20 +68,30 @@ public class FMenuBar extends JMenuBar
         folderView = new JCheckBoxMenuItem("View Folder");
         folderView.addItemListener(new FolderViewListener());
         project.add(folderView);
+
         return project;
     }
 
+    private JMenu setupEditMenu() {
+        JMenu edit =  new JMenu("Edit");
+
+        JMenuItem copy = edit.add("Copy");
+        copy.addActionListener(new CopyListener());
+        JMenuItem paste = edit.add("Paste");
+        // TODO - Add Paste Function
+
+        return edit;
+    }
+
     /* --------------------- Action and Item Listeners --------------------- */
-    class NewFileListener implements ActionListener // File Menu Listeners
-    {
+    class NewFileListener implements ActionListener { // File Menu Listeners
         @Override
         public void actionPerformed(ActionEvent e) {
             Editor.tabPane.addTTab();
         }
     }
 
-    class OpenFileListener implements ActionListener
-    {
+    class OpenFileListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
             File selectedFile = Editor.fileManager.chooseFile();
@@ -90,8 +114,7 @@ public class FMenuBar extends JMenuBar
         }
     }
 
-    class SaveFileListener implements ActionListener
-    {
+    class SaveFileListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
             if (Editor.tabPane.checkHasFile() == true)
@@ -107,8 +130,7 @@ public class FMenuBar extends JMenuBar
         }
     }
 
-    class SaveAsFileListener implements ActionListener
-    {
+    class SaveAsFileListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
             File location = Editor.fileManager.chooseFile();
@@ -128,22 +150,19 @@ public class FMenuBar extends JMenuBar
         }
     }
 
-    class SaveAllFilesListener implements ActionListener
-    {
+    class SaveAllFilesListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
             ArrayList<File> files = Editor.tabPane.getAllFiles();
             for (File file : files)
             {
-                // TODO - Save ALl Files
                 int index = files.indexOf(file);
                 Editor.fileManager.saveFile(file, index);
             }
         }
     }
 
-    class OpenFolderListener implements ActionListener
-    {
+    class OpenFolderListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
             File selectedFolder = Editor.fileManager.chooseFolder();
@@ -154,8 +173,7 @@ public class FMenuBar extends JMenuBar
         }
     }
 
-    class FolderViewListener implements ItemListener
-    {
+    class FolderViewListener implements ItemListener {
         @Override
         public void itemStateChanged(ItemEvent e) {
             if (e.getStateChange() == ItemEvent.SELECTED) {
@@ -171,11 +189,48 @@ public class FMenuBar extends JMenuBar
         }
     }
 
-    class CloseFileListener implements ActionListener
-    {
+    class CloseFileListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
             Editor.tabPane.closeTTab();
+        }
+    }
+
+    class CopyListener implements ActionListener { //Edit Menu Listeners
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            FScrollPane scrollPane = (FScrollPane) Editor.tabPane.getSelectedComponent();
+            FTextArea textArea = scrollPane.getFTextArea();
+            String selectedText = textArea.getSelectedText();
+
+            if (selectedText != null) {
+                StringSelection stringSelection = new StringSelection(selectedText);
+                Toolkit.getDefaultToolkit().getSystemClipboard().setContents(stringSelection, null);
+            }
+        }
+    }
+
+    class PasteListener implements  ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            FScrollPane scrollPane = (FScrollPane) Editor.tabPane.getSelectedComponent();
+            FTextArea textArea = scrollPane.getFTextArea();
+            
+            try {
+                // Get the clipboard contents
+                Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+                Transferable transferable = clipboard.getContents(null);
+
+                if (transferable != null && transferable.isDataFlavorSupported(DataFlavor.stringFlavor))
+                {
+                    // Get the string data from the clipboard
+                    String pastedText = (String) transferable.getTransferData(DataFlavor.stringFlavor);
+                    // Insert the pasted text into the JTextArea at the current cursor position
+                    textArea.insert(pastedText, textArea.getCaretPosition());
+                }
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
         }
     }
 }
