@@ -78,7 +78,7 @@ public class FMenuBar extends JMenuBar
         JMenuItem copy = edit.add("Copy");
         copy.addActionListener(new CopyListener());
         JMenuItem paste = edit.add("Paste");
-        // TODO - Add Paste Function
+        paste.addActionListener(new PasteListener());
 
         return edit;
     }
@@ -215,7 +215,7 @@ public class FMenuBar extends JMenuBar
         public void actionPerformed(ActionEvent e) {
             FScrollPane scrollPane = (FScrollPane) Editor.tabPane.getSelectedComponent();
             FTextArea textArea = scrollPane.getFTextArea();
-            
+
             try {
                 // Get the clipboard contents
                 Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();

@@ -1,7 +1,7 @@
 <component name="ArtifactManager">
-  <artifact type="jar" name="TFalcon:jar">
-    <output-path>$PROJECT_DIR$/out/artifacts/TFalcon_jar</output-path>
-    <root id="archive" name="TFalcon_jar.jar">
+  <artifact type="jar" name="TFalcon">
+    <output-path>$PROJECT_DIR$/out/artifacts/TFalcon</output-path>
+    <root id="archive" name="TFalcon.jar">
       <element id="archive" name="TFalcon.jar">
         <element id="module-output" name="TFalcon" />
       </element>
