@@ -1,29 +1,23 @@
-import FAssets.FScrollPane;
-import FAssets.FTreeCellRenderer;
-
 import javax.swing.*;
 import java.awt.*;
 import java.net.URL;
 
 public class Editor extends JFrame
 {
-    public static Editor instance;
-    public static FTabPane tabPane;
-    public static FileManager fileManager;
-    public static FTree fileTree;
-    public static FScrollPane fileTreePane;
+    public static Editor inst; // instance
 
-    public FMenuBar fmenuBar;
+    public FAssets.FTabPane tabPane;
+    public FileManager fileManager;
+    public FAssets.FTree fileTree;
+    public FAssets.FScrollPane fileTreePane;
+    public FAssets.FMenuBar fmenuBar;
 
-    public static void main(String[] args)
-    {
-        fileManager = new FileManager();
-        Editor window = new Editor();
+    public static void main(String[] args) {
+        inst = new Editor();
     }
 
-    public Editor()
-    {
-        instance = this;
+    public Editor() {
+        fileManager = new FileManager();
 
         // Application Setup
         setTitle("Text Falcon");
@@ -43,28 +37,27 @@ public class Editor extends JFrame
         container.setLayout(layout);
 
         // Construction - Tab Pane
-        tabPane = new FTabPane();
+        tabPane = new FAssets.FTabPane();
         tabPane.addTTab();
         container.add(tabPane, BorderLayout.CENTER);
 
         // Construction - File Tree
-        fileTree = new FTree();
-        fileTree.setCellRenderer(new FTreeCellRenderer());
-        fileTreePane = new FScrollPane(fileTree, false);
+        fileTree = new FAssets.FTree();
+        fileTree.setCellRenderer(new FAssets.FTreeCellRenderer());
+        fileTreePane = new FAssets.FScrollPane(fileTree, false);
         fileTreePane.setVisible(false);
         container.add(fileTreePane, BorderLayout.WEST);
 
         // Construction - Menu Bar
-        fmenuBar = new FMenuBar();
+        fmenuBar = new FAssets.FMenuBar();
         setJMenuBar(fmenuBar);
 
         // Make the Window Visible
         setVisible(true);
     }
 
-    public void CloseEditor()
-    {
-        Editor.instance.setVisible(false);
-        Editor.instance.dispose();
+    public void CloseEditor() {
+        Editor.inst.setVisible(false);
+        Editor.inst.dispose();
     }
 }

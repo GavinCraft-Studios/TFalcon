@@ -1,23 +1,16 @@
-import FAssets.FFileChooser;
-import FAssets.FMutableTreeNode;
-import FAssets.FScrollPane;
-import FAssets.FTextArea;
-
 import javax.swing.*;
-import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import java.io.*;
 
 public class FileManager
 {
-    public FFileChooser fileChooser;
+    public FAssets.FFileChooser fileChooser;
 
     public File selectedFolder;
     public File lastSelectedDirectory;
 
-    public FileManager()
-    {
-        fileChooser = new FFileChooser();
+    public FileManager() {
+        fileChooser = new FAssets.FFileChooser();
     }
 
     public File chooseFile()
@@ -27,7 +20,7 @@ public class FileManager
 
         int result = fileChooser.showOpenDialog(null);
 
-        if (result == FFileChooser.APPROVE_OPTION)
+        if (result == FAssets.FFileChooser.APPROVE_OPTION)
         {
             File selectedFile = fileChooser.getSelectedFile();
 
@@ -47,7 +40,7 @@ public class FileManager
 
         int result = fileChooser.showOpenDialog(null);
 
-        if (result == FFileChooser.APPROVE_OPTION)
+        if (result == FAssets.FFileChooser.APPROVE_OPTION)
         {
             File selectedFile = fileChooser.getSelectedFile();
 
@@ -63,8 +56,8 @@ public class FileManager
 
     public void openFile(File file)
     {
-        FScrollPane scrollPane = (FScrollPane) Editor.tabPane.getSelectedComponent();
-        FTextArea textArea = scrollPane.getFTextArea();
+        FAssets.FScrollPane scrollPane = (FAssets.FScrollPane) Editor.inst.tabPane.getSelectedComponent();
+        FAssets.FTextArea textArea = scrollPane.getFTextArea();
 
         // Open File Contents
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
@@ -82,8 +75,8 @@ public class FileManager
     {
         // Return true if save is completed
 
-        FScrollPane scrollPane = (FScrollPane) Editor.tabPane.getSelectedComponent();
-        FTextArea textArea = scrollPane.getFTextArea();
+        FAssets.FScrollPane scrollPane = (FAssets.FScrollPane) Editor.inst.tabPane.getSelectedComponent();
+        FAssets.FTextArea textArea = scrollPane.getFTextArea();
         String text = textArea.getText();
         try {
             // Create a FileWriter to write to the file
@@ -111,8 +104,8 @@ public class FileManager
     {
         // Return true if save is completed
 
-        FScrollPane scrollPane = (FScrollPane) Editor.tabPane.getSelectedComponent();
-        FTextArea textArea = scrollPane.getFTextArea();
+        FAssets.FScrollPane scrollPane = (FAssets.FScrollPane) Editor.inst.tabPane.getSelectedComponent();
+        FAssets.FTextArea textArea = scrollPane.getFTextArea();
         String text = textArea.getText();
         try {
             // Create a FileWriter to write to the file
@@ -138,26 +131,26 @@ public class FileManager
 
     public void populateDirectoryTree(File directory)
     {
-        FMutableTreeNode rootNode = new FMutableTreeNode(directory);
+        FAssets.FMutableTreeNode rootNode = new FAssets.FMutableTreeNode(directory);
         DefaultTreeModel treeModel = new DefaultTreeModel(rootNode);
-        Editor.fileTree.setModel(treeModel);
+        Editor.inst.fileTree.setModel(treeModel);
 
         // Recursively add subdirectories
         addSubdirectories(rootNode, directory);
     }
 
-    private void addSubdirectories(FMutableTreeNode node, File directory) {
+    private void addSubdirectories(FAssets.FMutableTreeNode node, File directory) {
         File[] files = directory.listFiles();
         if (files != null) {
             for (File file : files) {
                 if (file.isDirectory()) {
-                    FMutableTreeNode childNode = new FMutableTreeNode(file);
+                    FAssets.FMutableTreeNode childNode = new FAssets.FMutableTreeNode(file);
 
                     node.add(childNode);
                     addSubdirectories(childNode, file);
                 } else {
                     // If the file is not a directory, add it as a leaf node
-                    FMutableTreeNode fileNode = new FMutableTreeNode(file);
+                    FAssets.FMutableTreeNode fileNode = new FAssets.FMutableTreeNode(file);
                     node.add(fileNode);
                 }
             }
