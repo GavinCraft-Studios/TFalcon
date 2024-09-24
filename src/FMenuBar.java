@@ -62,7 +62,7 @@ public class FMenuBar extends JMenuBar
         // TODO - Make menu for creating projects
         // TODO - Make item for opening projects
         // TODO - Make item for saving projects
-        project.addSeparator();
+        //project.addSeparator();
         JMenuItem openFolder = project.add("Open Folder");
         openFolder.addActionListener(new OpenFolderListener());
         folderView = new JCheckBoxMenuItem("View Folder");
@@ -73,7 +73,7 @@ public class FMenuBar extends JMenuBar
     }
 
     private JMenu setupEditMenu() {
-        JMenu edit =  new JMenu("Edit");
+        JMenu edit = new JMenu("Edit");
 
         JMenuItem copy = edit.add("Copy");
         copy.addActionListener(new CopyListener());

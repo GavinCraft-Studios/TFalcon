@@ -1,10 +1,8 @@
 # TFalcon
 #### Text Falcon is a Java based text editor for all operating systems.
 
-
-
 ## Build .jar from IntelliJ
-#### I would like to leave instructions for myself and others on how to build a working .jar file from the editor this is made in (IntelliJ).
+#### Instructions for myself and others on how to build a working .jar file from the editor this is made in (IntelliJ).
 
 - Open the Project Structure dialog:
   - Go to File > Project Structure (or press Ctrl+Alt+Shift+S on Windows/Linux or Cmd+Alt+Shift+S on macOS).
@@ -23,3 +21,22 @@
   - Click Build to generate the JAR file.
 - Find the generated JAR file:
   - The JAR file will be located in the output directory you specified in step 4.
+
+## Build .exe from TFalcon .jar using Launch4j
+
+- Download and Install Launch4j [Here.](https://launch4j.sourceforge.net/)
+- Open the application, you should start on the "Basic" tab.
+  - Select the .jar file.
+  - Select an output directory and name the file.
+  - Set the Icon for the application.
+  - Check "Restart the application after a crash".
+- Go to the "Single Instance" tab.
+  - Check "Allow only a single instance of the application".
+  - Set Mutex name to "TFalcon".
+  - Set the window title to "TFalcon [Insert Version Here]".
+- Go to the "JRE" tab.
+  - Set JRE Paths to the name of the jdk you are using for example I am using openjdk-22.0.1 found in C:\Users\\[Username]\\.jdks
+- Save the configuration file.
+
+## Extra Information:
+Built in openjdk-22.0.1

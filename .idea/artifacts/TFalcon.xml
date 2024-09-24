@@ -3,7 +3,7 @@
     <output-path>$PROJECT_DIR$/out/artifacts/TFalcon</output-path>
     <root id="archive" name="TFalcon.jar">
       <element id="archive" name="TFalcon.jar">
-        <element id="module-output" name="TFalcon" />
+        <element id="module-output" name="TextFalcon" />
       </element>
     </root>
   </artifact>
