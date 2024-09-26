@@ -1,3 +1,5 @@
+package dev.gavindb.textfalcon;
+
 import javax.swing.*;
 import java.awt.*;
 import java.net.URL;
@@ -21,7 +23,7 @@ public class Editor extends JFrame
 
         // Application Setup
         setTitle("Text Falcon");
-        URL iconURL = getClass().getResource("TFalcon.png");
+        URL iconURL = getClass().getResource("dev/gavindb/textfalcon/TFalcon.png");
         ImageIcon icon = new ImageIcon(iconURL);
         setIconImage(icon.getImage());
 
