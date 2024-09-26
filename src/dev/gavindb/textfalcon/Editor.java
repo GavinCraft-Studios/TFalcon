@@ -23,7 +23,7 @@ public class Editor extends JFrame
 
         // Application Setup
         setTitle("Text Falcon");
-        URL iconURL = getClass().getResource("dev/gavindb/textfalcon/TFalcon.png");
+        URL iconURL = getClass().getResource("TFalcon.png");
         ImageIcon icon = new ImageIcon(iconURL);
         setIconImage(icon.getImage());
 
