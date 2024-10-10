@@ -1,5 +1,3 @@
-package dev.gavindb.textfalcon;
-
 import javax.swing.*;
 import java.awt.*;
 import java.net.URL;

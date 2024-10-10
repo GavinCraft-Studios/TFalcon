@@ -1,5 +1,3 @@
-package dev.gavindb.textfalcon;
-
 import javax.swing.*;
 import javax.swing.event.TreeExpansionEvent;
 import javax.swing.event.TreeExpansionListener;

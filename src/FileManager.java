@@ -1,5 +1,3 @@
-package dev.gavindb.textfalcon;
-
 import javax.swing.*;
 import javax.swing.tree.DefaultTreeModel;
 import java.io.*;
